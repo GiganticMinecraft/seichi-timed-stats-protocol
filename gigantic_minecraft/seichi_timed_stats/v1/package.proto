@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+/*
+ * # `seichi_timed_stats` API v1
+ */
+
+package gigantic_minecraft.seichi_timed_stats.v1;

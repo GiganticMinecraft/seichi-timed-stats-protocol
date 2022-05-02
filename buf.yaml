@@ -1,0 +1,5 @@
+version: v1
+
+name: "buf.build/gigantic-minecraft/seichi-timed-stats"
+
+deps: []
