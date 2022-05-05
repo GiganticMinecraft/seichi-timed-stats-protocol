@@ -3,6 +3,7 @@ syntax = "proto3";
 package gigantic_minecraft.seichi_timed_stats.v1;
 
 import "gigantic_minecraft/seichi_game_data/v1/service.proto";
+import "google/protobuf/timestamp.proto";
 
 //
 // プレーヤー達の「約N日前の統計量」をクエリできるサービス。
@@ -44,7 +45,8 @@ message PastPlayerBreakCountsRequest {
 }
 
 message PastPlayerBreakCountsResponse {
-  repeated gigantic_minecraft.seichi_game_data.v1.PlayerBreakCount past_break_counts = 1;
+  google.protobuf.Timestamp data_acquired_at = 1;
+  repeated gigantic_minecraft.seichi_game_data.v1.PlayerBreakCount past_break_counts = 2;
 }
 
 message PastPlayerBuildCountsRequest {
@@ -52,7 +54,8 @@ message PastPlayerBuildCountsRequest {
 }
 
 message PastPlayerBuildCountsResponse {
-  repeated gigantic_minecraft.seichi_game_data.v1.PlayerBuildCount past_build_counts = 1;
+  google.protobuf.Timestamp data_acquired_at = 1;
+  repeated gigantic_minecraft.seichi_game_data.v1.PlayerBuildCount past_build_counts = 2;
 }
 
 message PastPlayerPlayTicksRequest {
@@ -60,7 +63,8 @@ message PastPlayerPlayTicksRequest {
 }
 
 message PastPlayerPlayTicksResponse {
-  repeated gigantic_minecraft.seichi_game_data.v1.PlayerPlayTicks past_play_ticks = 1;
+  google.protobuf.Timestamp data_acquired_at = 1;
+  repeated gigantic_minecraft.seichi_game_data.v1.PlayerPlayTicks past_play_ticks = 2;
 }
 
 message PastPlayerVoteCountsRequest {
@@ -68,5 +72,6 @@ message PastPlayerVoteCountsRequest {
 }
 
 message PastPlayerVoteCountsResponse {
-  repeated gigantic_minecraft.seichi_game_data.v1.PlayerVoteCount past_vote_counts = 1;
+  google.protobuf.Timestamp data_acquired_at = 1;
+  repeated gigantic_minecraft.seichi_game_data.v1.PlayerVoteCount past_vote_counts = 2;
 }
