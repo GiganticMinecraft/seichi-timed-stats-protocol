@@ -36,12 +36,12 @@ service TimedStatsService {
   rpc PastPlayerVoteCounts(PastPlayerVoteCountsRequest) returns (PastPlayerVoteCountsResponse);
 }
 
-message ApproxDaysCount {
-  uint32 days_count = 1;
+message DaysCount {
+  uint32 count = 1;
 }
 
 message PastPlayerBreakCountsRequest {
-  ApproxDaysCount before = 1;
+  DaysCount approximately_before = 1;
 }
 
 message PastPlayerBreakCountsResponse {
@@ -50,7 +50,7 @@ message PastPlayerBreakCountsResponse {
 }
 
 message PastPlayerBuildCountsRequest {
-  ApproxDaysCount before = 1;
+  DaysCount approximately_before = 1;
 }
 
 message PastPlayerBuildCountsResponse {
@@ -59,7 +59,7 @@ message PastPlayerBuildCountsResponse {
 }
 
 message PastPlayerPlayTicksRequest {
-  ApproxDaysCount before = 1;
+  DaysCount approximately_before = 1;
 }
 
 message PastPlayerPlayTicksResponse {
@@ -68,7 +68,7 @@ message PastPlayerPlayTicksResponse {
 }
 
 message PastPlayerVoteCountsRequest {
-  ApproxDaysCount before = 1;
+  DaysCount approximately_before = 1;
 }
 
 message PastPlayerVoteCountsResponse {
