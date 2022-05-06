@@ -21,18 +21,22 @@ import "google/protobuf/timestamp.proto";
 service TimedStatsService {
   //
   // 約 N 日前のブロック破壊量統計を取得する。
+  // N はリクエストパラメータの `approximately_before` で指定できる。
   rpc PastPlayerBreakCounts(PastPlayerBreakCountsRequest) returns (PastPlayerBreakCountsResponse);
 
   //
   // 約 N 日前の建築量統計を取得する。
+  // N はリクエストパラメータの `approximately_before` で指定できる。
   rpc PastPlayerBuildCounts(PastPlayerBuildCountsRequest) returns (PastPlayerBuildCountsResponse);
 
   //
   // 約 N 日前のプレイティック数統計を取得する。
+  // N はリクエストパラメータの `approximately_before` で指定できる。
   rpc PastPlayerPlayTicks(PastPlayerPlayTicksRequest) returns (PastPlayerPlayTicksResponse);
 
   //
   // 約 N 日前の投票数統計を取得する。
+  // N はリクエストパラメータの `approximately_before` で指定できる。
   rpc PastPlayerVoteCounts(PastPlayerVoteCountsRequest) returns (PastPlayerVoteCountsResponse);
 }
 
