@@ -20,19 +20,19 @@ import "google/protobuf/timestamp.proto";
 //
 service TimedStatsService {
   //
-  // 約N日前のブロック破壊量統計を取得する。
+  // 約 N 日前のブロック破壊量統計を取得する。
   rpc PastPlayerBreakCounts(PastPlayerBreakCountsRequest) returns (PastPlayerBreakCountsResponse);
 
   //
-  // 約N日前の建築量統計を取得する。
+  // 約 N 日前の建築量統計を取得する。
   rpc PastPlayerBuildCounts(PastPlayerBuildCountsRequest) returns (PastPlayerBuildCountsResponse);
 
   //
-  // 約N日前の建築量統計を取得する。
+  // 約 N 日前のプレイティック数統計を取得する。
   rpc PastPlayerPlayTicks(PastPlayerPlayTicksRequest) returns (PastPlayerPlayTicksResponse);
 
   //
-  // 約N日前の建築量統計を取得する。
+  // 約 N 日前の投票数統計を取得する。
   rpc PastPlayerVoteCounts(PastPlayerVoteCountsRequest) returns (PastPlayerVoteCountsResponse);
 }
 
