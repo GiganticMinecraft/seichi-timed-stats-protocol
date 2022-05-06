@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package gigantic_minecraft.seichi_timed_stats.v1;
+
+import "gigantic_minecraft/seichi_game_data/v1/service.proto";
+import "google/protobuf/timestamp.proto";
+
+//
+// プレーヤー達の「約N日前の統計量」をクエリできるサービス。
+//
+// 「約N日前の統計量」の定義は以下に示す。
+//
+// - **ゲームデータソース**とは、整地鯖の全プレーヤーの現時点での統計量を取得できるサーバーを指す。
+// - **データ取得点** とは、データソースから取得された限りのプレーヤーの統計量と、取得が試行された時刻との組を指す。
+// - **N日前**とは、現在時刻からN*24時間さかのぼった時刻のことを指す。
+// - **N日前に最も近いデータ取得点**とは、以下の条件を満たすデータ取得点である：
+//   - N日前よりも昔のデータ取得点があれば、それらのうち一番取得時間が新しいデータ取得点
+//   - N日前よりも昔のデータ取得点が無く、何らかの時刻のデータ取得点があれば、それらのうち最も古いもの
+// - **約N日前の統計量** とは、N日前に最も近いデータ取得点での全プレーヤーの統計量を指す。
+//
+service TimedStatsService {
+  //
+  // 約 N 日前のブロック破壊量統計を取得する。
+  // N はリクエストパラメータの `approximately_before` で指定できる。
+  rpc PastPlayerBreakCounts(PastPlayerBreakCountsRequest) returns (PastPlayerBreakCountsResponse);
+
+  //
+  // 約 N 日前の建築量統計を取得する。
+  // N はリクエストパラメータの `approximately_before` で指定できる。
+  rpc PastPlayerBuildCounts(PastPlayerBuildCountsRequest) returns (PastPlayerBuildCountsResponse);
+
+  //
+  // 約 N 日前のプレイティック数統計を取得する。
+  // N はリクエストパラメータの `approximately_before` で指定できる。
+  rpc PastPlayerPlayTicks(PastPlayerPlayTicksRequest) returns (PastPlayerPlayTicksResponse);
+
+  //
+  // 約 N 日前の投票数統計を取得する。
+  // N はリクエストパラメータの `approximately_before` で指定できる。
+  rpc PastPlayerVoteCounts(PastPlayerVoteCountsRequest) returns (PastPlayerVoteCountsResponse);
+}
+
+message DaysCount {
+  uint32 count = 1;
+}
+
+message PastPlayerBreakCountsRequest {
+  DaysCount approximately_before = 1;
+}
+
+message PastPlayerBreakCountsResponse {
+  google.protobuf.Timestamp data_acquired_at = 1;
+  repeated gigantic_minecraft.seichi_game_data.v1.PlayerBreakCount past_break_counts = 2;
+}
+
+message PastPlayerBuildCountsRequest {
+  DaysCount approximately_before = 1;
+}
+
+message PastPlayerBuildCountsResponse {
+  google.protobuf.Timestamp data_acquired_at = 1;
+  repeated gigantic_minecraft.seichi_game_data.v1.PlayerBuildCount past_build_counts = 2;
+}
+
+message PastPlayerPlayTicksRequest {
+  DaysCount approximately_before = 1;
+}
+
+message PastPlayerPlayTicksResponse {
+  google.protobuf.Timestamp data_acquired_at = 1;
+  repeated gigantic_minecraft.seichi_game_data.v1.PlayerPlayTicks past_play_ticks = 2;
+}
+
+message PastPlayerVoteCountsRequest {
+  DaysCount approximately_before = 1;
+}
+
+message PastPlayerVoteCountsResponse {
+  google.protobuf.Timestamp data_acquired_at = 1;
+  repeated gigantic_minecraft.seichi_game_data.v1.PlayerVoteCount past_vote_counts = 2;
+}
